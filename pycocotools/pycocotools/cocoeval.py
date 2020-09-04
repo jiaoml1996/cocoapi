@@ -505,12 +505,15 @@ class COCOeval:
                                   maxDets=self.params.maxDets[2])
             stats[4] = _summarize(1,
                                   areaRng='small',
+                                  iouThr=.3,
                                   maxDets=self.params.maxDets[2])
             stats[5] = _summarize(1,
                                   areaRng='medium',
+                                  iouThr=.3,
                                   maxDets=self.params.maxDets[2])
             stats[6] = _summarize(1,
                                   areaRng='large',
+                                  iouThr=.3,
                                   maxDets=self.params.maxDets[2])
             stats[7] = _summarize(0, maxDets=self.params.maxDets[0])
             stats[8] = _summarize(0, maxDets=self.params.maxDets[1])
@@ -574,8 +577,12 @@ class Params:
                                    int(np.round((1.00 - .0) / .01)) + 1,
                                    endpoint=True)
         self.maxDets = [1, 10, 100]
-        self.areaRng = [[0**2, 1e5**2], [0**2, 32**2], [32**2, 96**2],
-                        [96**2, 1e5**2]]
+        # self.areaRng = [[0**2, 1e5**2], [0**2, 32**2], [32**2, 96**2],
+        #                 [96**2, 1e5**2]]
+
+        # for beiyisanyuan medical
+        self.areaRng = [[0, 10000000000.0],[0, 4013], [4013, 8740], [8740, 10000000000]]
+
         self.areaRngLbl = ['all', 'small', 'medium', 'large']
         self.useCats = 1
 
